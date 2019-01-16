@@ -1,0 +1,13 @@
+version: '3.3'
+
+services:
+  nginx:
+    image: 'nginx:1.13-alpine'
+    restart: 'unless-stopped'
+    expose:
+       - "80"
+    ports:
+       - "80:80"
+    volumes:
+       - ./:/usr/share/nginx/html/
+   
