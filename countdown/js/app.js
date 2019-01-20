@@ -5,8 +5,6 @@ const notificationOptions = {
   vibrate: [50, 100, 150] // vibration on notification
 }
 
-new Notification
-
 var App = {
     config: {
         defaultCountDownTime: 3//50 * 60
@@ -174,6 +172,11 @@ App.function.activateStartButtons = function()
     App.ref.resetButton.addClass('hidden');
 }
 
+App.core.generateNotificationMessage = function()
+{
+    return "Chicken #" + new Date().getTimestamp() + " reports: Countdown has ended.";
+}
+
 App.callback.countDownFinished = function()
 {
     App.ref.pauseButton.addClass('hidden');
@@ -182,12 +185,12 @@ App.callback.countDownFinished = function()
         Notification.requestPermission().then(function (permission) {
           // If the user accepts, let's create a notification
             if (permission === "granted") {
-                var notification = new Notification("Time is up!", notificationOptions);
+                var notification = new Notification(App.core.generateNotificationMessage(), notificationOptions);
             }
         });
         
         if (Notification.permission === "granted") {
-            new Notification("Time is up!", notificationOptions);
+            new Notification(App.core.generateNotificationMessage(), notificationOptions);
         }
     }
     
