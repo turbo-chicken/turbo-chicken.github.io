@@ -7,7 +7,7 @@ const notificationOptions = {
 
 var App = {
     config: {
-        defaultCountDownTime: 3//50 * 60
+        defaultCountDownTime: 50 * 60
     },
     ref: {},
     env: {},
