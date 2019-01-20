@@ -21,6 +21,18 @@
     
           <main role="main" class="inner cover">
             <h1 class="cover-heading" id="timer-title">Countdown</h1>
+            <div id="counter-value-placeholder">
+                <center>
+                <table>
+                    <tr>
+                        <td><label><input class="form-radio" type="radio" name="count-value" value="1"> 1 min</label></td>
+                        <td><label><input class="form-radio" type="radio" name="count-value" value="10"> 10 min</label></td>
+                        <td><label><input class="form-radio" type="radio" name="count-value" value="50" checked="true"> 50 min</label></td>
+                        <td><label><input class="form-radio" type="radio" name="count-value" value="60"> 1 hour</label></td>
+                    </tr>
+                </table>
+                </center>
+            </div>
             <p id="time-input-placeholder" class="time-left time-to-countdown-input hidden">
                 <input type="text" id="hours" class="txt-shadow" name="hours" value="00" />:<input type="text" id="minutes" class="txt-shadow" name="minutes" value="00" />:<input type="text" id="seconds" class="txt-shadow" name="seconds" value="00" />
             </p>

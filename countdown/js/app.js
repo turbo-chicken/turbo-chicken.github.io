@@ -31,6 +31,7 @@ App.init = function()
     App.ref.pauseButton = $('#pause-button');
     App.ref.resetButton = $('#reset-button');
     App.ref.continueButton = $('#continue-button');
+    App.ref.counterValueBox = $('#counter-value-placeholder');
     App.core.restoreEnv();
     App.env.countDownFinished = new Howl({
       src: ['/countdown/js/media/countdown_finished.wav']
@@ -44,6 +45,7 @@ App.start = function()
     App.ref.resetButton.on('click', App.callback.onResetButtonPressed);
     App.ref.pauseButton.on('click', App.callback.onPauseButtonPressed);
     App.ref.continueButton.on('click', App.callback.onContinueButtonPressed);
+    App.ref.counterValueBox.on('click', App.callback.readCounterValue);
 }
 
 App.core.restoreEnv = function()
@@ -61,6 +63,11 @@ App.core.setTimerDefaults = function()
 
 App.core.startTicking = function()
 {
+    App.core.stopTicking();
+    App.ref.counterValueBox.addClass('hidden');
+
+    App.callback.readCounterValue();
+    
     App.env.tickerInterval = setInterval(
         function() {
             App.core.tick();
@@ -167,9 +174,22 @@ App.function.activateResetButtons = function()
 
 App.function.activateStartButtons = function()
 {
+    App.ref.counterValueBox.removeClass('hidden');
     App.ref.startButton.removeClass('hidden');
     App.ref.pauseButton.addClass('hidden');
     App.ref.resetButton.addClass('hidden');
+}
+
+App.callback.readCounterValue = function()
+{
+    var userCounterValue = parseInt($('input[name="count-value"]:checked').val(), 10);
+    if ($.inArray(userCounterValue, [1, 10, 50, 60]) !== -1) {
+        App.config.defaultCountDownTime = userCounterValue * 60;
+    } else {
+        App.config.defaultCountDownTime = 50 * 60;
+    }
+
+    App.function.updateTimerValue(App.config.defaultCountDownTime);
 }
 
 App.core.generateNotificationMessage = function()
