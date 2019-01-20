@@ -1,6 +1,6 @@
 var App = {
     config: {
-        defaultCountDownTime: 2//50 * 60
+        defaultCountDownTime: 3//50 * 60
     },
     ref: {},
     env: {},
