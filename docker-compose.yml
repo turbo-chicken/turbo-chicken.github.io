@@ -6,8 +6,10 @@ services:
     restart: 'unless-stopped'
     expose:
        - "80"
+       - "443"
     ports:
        - "80:80"
+       - "443:443"
     volumes:
        - ./:/usr/share/nginx/html/
    

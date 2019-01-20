@@ -1,3 +1,12 @@
+const notificationOptions = {
+  tag: 'count-down-alert', // tag for notification
+  renotify: true, // defalt false, renotifying after old notification
+  body: '', // description under title
+  vibrate: [50, 100, 150] // vibration on notification
+}
+
+new Notification
+
 var App = {
     config: {
         defaultCountDownTime: 3//50 * 60
@@ -173,12 +182,12 @@ App.callback.countDownFinished = function()
         Notification.requestPermission().then(function (permission) {
           // If the user accepts, let's create a notification
             if (permission === "granted") {
-                var notification = new Notification("Time is up!");
+                var notification = new Notification("Time is up!", notificationOptions);
             }
         });
         
         if (Notification.permission === "granted") {
-            new Notification("Time is up!");
+            new Notification("Time is up!", notificationOptions);
         }
     }
     
