@@ -64,9 +64,8 @@ App.core.setTimerDefaults = function()
 App.core.startTicking = function()
 {
     App.core.stopTicking();
-    App.ref.counterValueBox.addClass('hidden');
-
     App.callback.readCounterValue();
+    App.ref.counterValueBox.addClass('hidden');
     
     App.env.tickerInterval = setInterval(
         function() {
@@ -184,12 +183,14 @@ App.callback.readCounterValue = function()
 {
     var userCounterValue = parseInt($('input[name="count-value"]:checked').val(), 10);
     if ($.inArray(userCounterValue, [1, 10, 50, 60]) !== -1) {
+        App.env.currentCountDownTime = userCounterValue * 60;
         App.config.defaultCountDownTime = userCounterValue * 60;
     } else {
+        App.env.currentCountDownTime = 50 * 60;
         App.config.defaultCountDownTime = 50 * 60;
     }
 
-    App.function.updateTimerValue(App.config.defaultCountDownTime);
+    App.function.updateTimerValue(App.env.currentCountDownTime);
 }
 
 App.core.generateNotificationMessage = function()
