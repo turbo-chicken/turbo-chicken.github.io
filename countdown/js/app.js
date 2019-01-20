@@ -175,7 +175,7 @@ App.function.activateStartButtons = function()
 App.core.generateNotificationMessage = function()
 {
     var now = new Date();
-    return  now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds() + " - Countdown has ended.";
+    return  moment(now).format("h:mm:ss a") + " - Countdown has ended.";
 }
 
 App.callback.countDownFinished = function()
