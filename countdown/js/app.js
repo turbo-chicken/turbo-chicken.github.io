@@ -174,7 +174,8 @@ App.function.activateStartButtons = function()
 
 App.core.generateNotificationMessage = function()
 {
-    return "Chicken #" + new Date().getTimestamp() + " reports: Countdown has ended.";
+    var now = new Date();
+    return  now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds() + " - Countdown has ended.";
 }
 
 App.callback.countDownFinished = function()
